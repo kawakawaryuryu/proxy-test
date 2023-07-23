@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  client:
+    container_name: client
+    build:
+      context: ../client
+    command: sleep infinity
+    networks:
+      - client
+  proxy:
+    container_name: proxy
+    build:
+      context: ./
+    volumes:
+      - ./haproxy.cfg:/etc/haproxy/haproxy.cfg:ro
+    networks:
+      - client
+      - origin
+  origin:
+    container_name: origin
+    image: nginx:1.25.1
+    networks:
+      - origin
+networks:
+  client:
+  origin:
+
