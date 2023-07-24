@@ -1,18 +1,15 @@
 version: '3.8'
 services:
-  squid:
-    container_name: squid
+  client:
+    container_name: client
     build:
       context: ./
+    command: sleep infinity
     volumes:
-      - ./squid.conf:/etc/squid/squid.conf:ro
       - ./packets:/app/packets
     networks:
       - client
-      - origin
 networks:
   client:
-    external: true
-  origin:
-    external: true
+    name: client
 

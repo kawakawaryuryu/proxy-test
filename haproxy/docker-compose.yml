@@ -1,16 +1,7 @@
 version: '3.8'
 services:
-  client:
-    container_name: client
-    build:
-      context: ../client
-    command: sleep infinity
-    volumes:
-      - ../client/packets:/app/packets
-    networks:
-      - client
-  proxy:
-    container_name: proxy
+  haproxy:
+    container_name: haproxy
     build:
       context: ./
     volumes:
@@ -19,12 +10,9 @@ services:
     networks:
       - client
       - origin
-  origin:
-    container_name: origin
-    image: nginx:1.25.1
-    networks:
-      - origin
 networks:
   client:
+    external: true
   origin:
+    external: true
 

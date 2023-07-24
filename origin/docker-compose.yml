@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  origin:
+    container_name: origin
+    image: nginx:1.25.1
+    networks:
+      - origin
+networks:
+  origin:
+    name: origin
+
