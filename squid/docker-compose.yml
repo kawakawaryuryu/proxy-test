@@ -14,7 +14,7 @@ services:
     build:
       context: ./
     volumes:
-      - ./haproxy.cfg:/etc/haproxy/haproxy.cfg:ro
+      - ./squid.conf:/etc/squid/squid.conf:ro
       - ./packets:/app/packets
     networks:
       - client
