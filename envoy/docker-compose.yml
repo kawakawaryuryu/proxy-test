@@ -5,7 +5,8 @@ services:
     build:
       context: ./
     volumes:
-      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+#      - ./envoy-l4.yaml:/etc/envoy/envoy.yaml:ro
+      - ./envoy-l7.yaml:/etc/envoy/envoy.yaml:ro
       - ./packets:/app/packets
     networks:
       - client
