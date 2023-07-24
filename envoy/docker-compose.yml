@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  envoy:
+    container_name: envoy
+    build:
+      context: ./
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+      - ./packets:/app/packets
+    networks:
+      - client
+      - origin
+networks:
+  client:
+    external: true
+  origin:
+    external: true
+
