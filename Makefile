@@ -6,24 +6,28 @@ up:
 	make haproxy-up
 	make squid-up
 	make envoy-up
+	make nginx-up
 ps:
 	make client-ps
 	make origin-ps
 	make haproxy-ps
 	make squid-ps
 	make envoy-ps
+	make nginx-ps
 down:
-	make client-down
-	make origin-down
 	make haproxy-down
 	make squid-down
 	make envoy-down
+	make nginx-down
+	make client-down
+	make origin-down
 logs:
 	make client-logs
 	make origin-logs
 	make haproxy-logs
 	make squid-logs
 	make envoy-logs
+	make nginx-logs
 
 client-up:
 	docker-compose -f client/docker-compose.yml up -d --build
@@ -79,3 +83,14 @@ envoy-down:
 	docker-compose -f envoy/docker-compose.yml down
 envoy-logs:
 	docker-compose -f envoy/docker-compose.yml logs -f
+
+nginx-up:
+	docker-compose -f nginx/docker-compose.yml up -d --build
+nginx-ps:
+	docker-compose -f nginx/docker-compose.yml ps
+nginx-exec:
+	docker-compose -f nginx/docker-compose.yml exec nginx bash
+nginx-down:
+	docker-compose -f nginx/docker-compose.yml down
+nginx-logs:
+	docker-compose -f nginx/docker-compose.yml logs -f

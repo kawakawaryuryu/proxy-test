@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.25.1
+    build:
+      context: ./
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./packets:/app/packets
+    networks:
+      - client
+      - origin
+networks:
+  client:
+    external: true
+  origin:
+    external: true
+
